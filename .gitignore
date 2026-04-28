@@ -31,6 +31,9 @@ ENV/
 *.ipynb_checkpoints/
 .jupyter/
 
+# PDF
+*.pdf
+
 # Data files
 *.csv
 *.tsv
