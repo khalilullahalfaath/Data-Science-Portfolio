@@ -4,7 +4,17 @@
 
 **Status:** Ongoing | **Duration:** 0 days | **Level:** Beginner
 
-## 📋 Project Brief
+- [House Price Prediction API](#house-price-prediction-api)
+  - [Project Brief](#project-brief)
+  - [Learning Objectives](#learning-objectives)
+  - [Tech Stack](#tech-stack)
+  - [Dataset](#dataset)
+  - [Core Requirements](#core-requirements)
+  - [Deliverables](#deliverables)
+  - [Bonus Challenges](#bonus-challenges)
+
+
+## Project Brief
 
 **The Request:**
 "Client mau prediksi harga rumah berdasarkan fitur seperti luas, kamar, lokasi. Bikin API-nya ya, biar mereka tinggal input data rumah terus keluar estimasi harganya."
@@ -20,7 +30,7 @@
 - Real-time streaming segmentation 
 - CRM integration.
 
-## 🎯 Learning Objectives
+## Learning Objectives
 
 -  Linear and polynomial regression fundamentals
 -  Feature scaling and categorical encoding techniques
@@ -28,7 +38,7 @@
 -  REST API development with FastAPI
 -  Model deployment and serving
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Language:** Python 3.10
 - **ML Libraries:** scikit-learn, XGBoost, pandas, numpy
@@ -36,7 +46,7 @@
 - **Visualization:** matplotlib, seaborn
 - **Tools:** Jupyter, Postman
 
-## 📊 Dataset
+## Dataset
 
 **Primary:** [KC House Data](https://www.kaggle.com/datasets/shivachandel/kc-house-data)
 - 21,613 rows
@@ -44,7 +54,7 @@
 
 **Alternative:** [Ames Housing](https://www.kaggle.com/datasets/prevek18/ames-housing-dataset)
 
-## ✅ Core Requirements Completed
+## Core Requirements
 
 - [ ] EDA with visualizations (distributions, correlations, scatter plots)
 - [ ] Data preprocessing: handle missing values, encode categoricals, scale features
@@ -53,7 +63,7 @@
 - [ ] REST API with /predict endpoint accepting house features
 - [ ] Separate code into modules (preprocessing, training, serving)
 
-## 🎁 Deliverables
+## Deliverables
 
 - [ ] Jupyter notebook with full EDA and model comparison
 - [ ] Trained model artifact (.pkl)
@@ -61,13 +71,13 @@
 - [ ] Postman collection for API testing
 - [ ] README with model card (metrics, features, limitations)
 
-## ⭐ Bonus Challenges Completed
+## Bonus Challenges
 
 - [ ] Feature importance visualization with SHAP
 - [ ] Model versioning with timestamp and metrics tracking
-- [ ] Data drift detection on incoming prediction requests (planned)
-- [ ] Simple frontend with Streamlit (planned)
-
+- [ ] Data drift detection on incoming prediction requests 
+- [ ] Simple frontend with Streamlit
+  
 <!-- ## 📁 Project Structure
 
     01-house-price-prediction-api/
