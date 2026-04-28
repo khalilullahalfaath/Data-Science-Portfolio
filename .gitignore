@@ -1,0 +1,138 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+.jupyter/
+
+# Data files
+*.csv
+*.tsv
+*.dat
+*.data
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+data/raw/*
+data/processed/*
+data/external/*
+!data/.gitkeep
+!data/sample/ 
+
+# Model files
+*.h5
+*.hdf5
+*.pb
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.tflite
+models/saved/*
+models/checkpoints/*
+!models/.gitkeep
+
+# Logs & Experiments
+logs/
+*.log
+mlruns/
+runs/
+wandb/
+.neptune/
+tensorboard/
+experiments/
+
+# ML Framework specific
+# TensorFlow
+*.tfrecord
+checkpoint
+model.ckpt.*
+
+# PyTorch
+lightning_logs/
+
+# MLflow
+mlruns/
+
+# DVC (Data Version Control)
+.dvc/
+*.dvc
+
+# Datasets cache
+.cache/
+*.cache
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+*.env
+
+# Serving/API specific
+# FastAPI/Flask
+instance/
+.webassets-cache
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Credentials & Secrets
+*.pem
+*.key
+credentials.json
+service-account.json
+secrets/
+
+# Large files (adjust size as needed)
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# OS
+Thumbs.db
+.DS_Store
