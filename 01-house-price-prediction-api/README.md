@@ -12,6 +12,27 @@
   - [Core Requirements](#core-requirements)
   - [Deliverables](#deliverables)
   - [Bonus Challenges](#bonus-challenges)
+  - [Project Structure](#project-structure)
+  - [🚀 Getting Started](#-getting-started)
+    - [1. Setup Environment](#1-setup-environment)
+    - [2. Download Dataset](#2-download-dataset)
+    - [3. Run EDA \& Training](#3-run-eda--training)
+    - [4. Start API Server](#4-start-api-server)
+    - [5. Test API](#5-test-api)
+  - [📈 Results](#-results)
+    - [Model Comparison](#model-comparison)
+    - [Feature Importance (Top 5)](#feature-importance-top-5)
+    - [API Performance](#api-performance)
+  - [📊 Model Card](#-model-card)
+    - [Model Information](#model-information)
+    - [Intended Use](#intended-use)
+    - [Training Data](#training-data)
+    - [Performance Metrics](#performance-metrics)
+    - [Limitations](#limitations)
+    - [Ethical Considerations](#ethical-considerations)
+  - [📚 References](#-references)
+  - [📝 Next Steps](#-next-steps)
+  - [📧 Contact](#-contact)
 
 
 ## Project Brief
@@ -56,20 +77,20 @@
 
 ## Core Requirements
 
-- [ ] EDA with visualizations (distributions, correlations, scatter plots)
-- [ ] Data preprocessing: handle missing values, encode categoricals, scale features
-- [ ] Train 3+ models (Linear Regression, Random Forest, XGBoost) and compare
-- [ ] Model evaluation with RMSE, MAE, and R² on test set
-- [ ] REST API with /predict endpoint accepting house features
-- [ ] Separate code into modules (preprocessing, training, serving)
+- [x] EDA with visualizations (distributions, correlations, scatter plots)
+- [x] Data preprocessing: handle missing values, encode categoricals, scale features
+- [x] Train 3+ models (Linear Regression, Random Forest, XGBoost) and compare
+- [x] Model evaluation with RMSE, MAE, and R² on test set
+- [x] REST API with /predict endpoint accepting house features
+- [x] Separate code into modules (preprocessing, training, serving)
 
 ## Deliverables
 
-- [ ] Jupyter notebook with full EDA and model comparison
-- [ ] Trained model artifact (.pkl)
-- [ ] REST API with Swagger documentation
-- [ ] Postman collection for API testing
-- [ ] README with model card (metrics, features, limitations)
+- [x] Jupyter notebook with full EDA and model comparison
+- [x] Trained model artifact (.pkl)
+- [x] REST API with Swagger documentation
+- [x] Postman collection for API testing
+- [x] README with model card (metrics, features, limitations)
 
 ## Bonus Challenges
 
@@ -78,43 +99,44 @@
 - [ ] Data drift detection on incoming prediction requests 
 - [ ] Simple frontend with Streamlit
   
-<!-- ## 📁 Project Structure
-
-    01-house-price-prediction-api/
-    ├── data/
-    │   ├── raw/
-    │   │   └── kc_house_data.csv
-    │   └── processed/
-    │       └── processed_data.csv
-    ├── notebooks/
-    │   ├── 01-eda.ipynb
-    │   └── 02-modeling.ipynb
-    ├── src/
-    │   ├── preprocessing.py
-    │   ├── train.py
-    │   └── api.py
-    ├── models/
-    │   ├── xgboost_model.pkl
-    │   └── scaler.pkl
-    ├── tests/
-    │   └── test_api.py
-    ├── postman/
-    │   └── house_price_api.json
-    ├── requirements.txt
-    ├── .gitignore
-    └── README.md
+## Project Structure
+```
+01-house-price-prediction-api/
+├── data/
+│   ├── raw/
+│   │   └── kc_house_data.csv
+│   └── processed/
+│       └── processed_data.csv
+├── notebooks/
+│   ├── eda.ipynb
+│   └── preprocessing.ipynb
+├── src/
+│   ├── preprocessing.py
+│   ├── train.py
+│   └── api.py
+├── models/
+│   ├── xgboost_model.pkl
+│   └── scaler.pkl
+├── tests/
+│   └── test_api.py
+├── postman/
+│   └── house_price_api.json
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
 
 ## 🚀 Getting Started
 
 ### 1. Setup Environment
-
-    cd 01-house-price-prediction-api
+```
+cd 01-house-price-prediction-api
     
-    python -m venv venv
-    source venv/bin/activate
+python -m venv venv
+source venv/bin/activate
     
-    pip install -r requirements.txt
-
+pip install -r requirements.txt
+```
 Windows users: use `venv\Scripts\activate`
 
 ### 2. Download Dataset
@@ -122,103 +144,91 @@ Windows users: use `venv\Scripts\activate`
 Download from Kaggle and place in `data/raw/kc_house_data.csv`
 
 ### 3. Run EDA & Training
-
-    jupyter notebook notebooks/01-eda.ipynb
+```
+jupyter notebook notebooks/01-eda.ipynb
     
-    python src/train.py
+python src/train.py
+```
 
 ### 4. Start API Server
 
-    uvicorn src.api:app --reload
+`uvicorn src.api:app --reload`
 
 API available at: http://localhost:8000
 Swagger docs at: http://localhost:8000/docs
 
 ### 5. Test API
+```
+# Health check
+curl http://localhost:8000/health
 
-    curl -X POST "http://localhost:8000/predict" \
-      -H "Content-Type: application/json" \
-      -d '{"bedrooms": 3, "bathrooms": 2, "sqft_living": 2000, "sqft_lot": 5000, "floors": 1, "waterfront": 0, "view": 0, "condition": 3, "grade": 7, "sqft_above": 1500, "sqft_basement": 500, "yr_built": 1990, "yr_renovated": 0, "zipcode": 98178, "lat": 47.5112, "long": -122.257}'
+# Model info
+curl http://localhost:8000/model-info
 
-Or import Postman collection from `postman/house_price_api.json`
+# Prediction
+curl -X POST "http://localhost:8000/predict" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "bedrooms": 3,
+    "bathrooms": 2.5,
+    "sqft_living": 2000,
+    "sqft_lot": 5000,
+    "floors": 2,
+    "waterfront": 0,
+    "view": 0,
+    "condition": 3,
+    "grade": 7,
+    "sqft_above": 1500,
+    "sqft_basement": 500,
+    "yr_built": 1990,
+    "yr_renovated": 0,
+    "zipcode": 98001,
+    "lat": 47.5,
+    "long": -122.3,
+    "sqft_living15": 1800,
+    "sqft_lot15": 4500
+  }'
+```
+
+Or import Postman collection from `postman/House_Price_Prediction.postman_collection.json`
 
 ## 📈 Results
 
 ### Model Comparison
 
-| Model | RMSE | MAE | R² Score | Training Time |
-|-------|------|-----|----------|---------------|
-| Linear Regression | $125,430 | $85,210 | 0.72 | 0.5s |
-| Random Forest | $98,560 | $65,340 | 0.82 | 12.3s |
-| **XGBoost** | **$89,240** | **$58,120** | **0.86** | 8.7s |
+| Model | RMSE | MAE | R² Score | 
+|-------|------|-----|----------|
+| Linear Regression | $170,909 | $98,753 | 0.8068 |
+| Decisio Tree | $212,076 | $104,113 | 0.7025 |
+| **Random Forest** | **$145,894** | **$72,021** | **0.8592** |
+| XGBoost | $148,198 | $77,344 | 0.8547 |
 
-**Best Model:** XGBoost with hyperparameter tuning
+**Best Model:** Random Forest
 
 ### Feature Importance (Top 5)
 
-1. `sqft_living` - 0.35
-2. `grade` - 0.18
-3. `lat` (latitude) - 0.12
-4. `sqft_above` - 0.10
-5. `bathrooms` - 0.08
+1. `grade` - 0.330546
+2. `sqft_living` - 0.260098
+3. `lat` (latitude) - 0.152415
+4. `long` (longitude) - 0.063791
+5. `yr_built` - 0.033660
 
 ### API Performance
 
-- **Average Response Time:** 145ms ✅
-- **P95 Response Time:** 180ms ✅
-- **Throughput:** ~50 requests/second
-
-## 🧠 What I Learned
-
-### 1. Exploratory Data Analysis
-- Identified strong correlation between `sqft_living` and price (r=0.70)
-- Found outliers: houses with 33 bedrooms (data entry error)
-- Discovered price distribution is right-skewed → applied log transformation
-
-### 2. Feature Engineering
-- Created `house_age` from `yr_built`
-- Created `is_renovated` binary feature
-- Created `price_per_sqft` for better insights
-- One-hot encoded `zipcode` (70 unique values)
-
-### 3. Model Selection
-- Linear Regression: Fast but underfits
-- Random Forest: Good performance, interpretable
-- XGBoost: Best performance, handles non-linearity well
-
-### 4. Challenges & Solutions
-
-**Challenge 1:** Missing values in `yr_renovated`
-- **Solution:** Filled with 0 (means not renovated)
-
-**Challenge 2:** High cardinality in `zipcode`
-- **Solution:** Used target encoding instead of one-hot
-
-**Challenge 3:** Model overfitting on training data
-- **Solution:** Applied cross-validation and regularization
-
-**Challenge 4:** API response time > 200ms initially
-- **Solution:** Cached scaler and model in memory, optimized preprocessing
-
-## 🔍 Key Insights
-
-1. **Location matters most** - Latitude/longitude are top predictors
-2. **Square footage > number of rooms** - Living area more important than bedroom count
-3. **Grade is crucial** - Construction quality significantly impacts price
-4. **Waterfront premium** - Waterfront properties cost 2x more on average
+- **Response Time:** 69.6 ms (0.069604 seconds) ✅
 
 ## 📊 Model Card
 
 ### Model Information
-- **Model Type:** XGBoost Regressor
+- **Model Type:** Random Forest Regressor
 - **Version:** 1.0.0
 - **Training Date:** April 28, 2026
-- **Framework:** scikit-learn 1.3.0, XGBoost 2.0.0
+- **Framework:** scikit-learn 1.2.0
 
 ### Intended Use
-- **Primary Use:** Estimate house prices for King County, WA
-- **Users:** Real estate agents, homebuyers, property investors
-- **Out of Scope:** Properties outside King County, commercial real estate
+- **Primary Use:** Estimating house prices based on property features for buyers, sellers, and real estate agents.
+- **Users:**  Homeowners, real estate professionals, data analysts.
+- **Out of Scope:** 
 
 ### Training Data
 - **Source:** King County House Sales (2014-2015)
@@ -226,15 +236,12 @@ Or import Postman collection from `postman/house_price_api.json`
 - **Split:** 80% train, 20% test
 
 ### Performance Metrics
-- **R² Score:** 0.86
-- **RMSE:** $89,240
-- **MAE:** $58,120
+- **R² Score:** 0.8592
+- **RMSE:** $145,894
+- **MAE:** $72,021
 
 ### Limitations
-- Model trained on 2014-2015 data (may not reflect current market)
-- Limited to King County area
-- Does not account for market trends or economic factors
-- May underperform on luxury properties (>$2M)
+
 
 ### Ethical Considerations
 - Model may perpetuate historical biases in housing prices
@@ -264,4 +271,4 @@ Questions or feedback? Open an issue or reach out!
 
 ---
 
-**Project Timeline:** Apr 21 - Apr 28, 2026 | **Total Hours:** ~35 hours -->
+**Project Timeline:** May 1 - May 8, 2026 | **Total Hours:** ~35 hours
